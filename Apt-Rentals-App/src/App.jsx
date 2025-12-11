@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar.jsx";
 import Sidebar from "./components/Sidebar.jsx";
 import Homepage from "./components/Homepage.jsx";
 import Footer from "./components/Footer.jsx";
+import AptData from "../src/assets/listings.json";
 
 function App() {
   return (
