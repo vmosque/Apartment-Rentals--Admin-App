@@ -9,9 +9,8 @@ import { useState } from "react";
 function App() {
   const [apt, setApt] = useState(AptData.results);
 
-  const handleDeleteApt = (id) => {
-    const newList = apt.filter((item) => item.id !== id);
-    setApt(newList);
+  const handleDeleteApt = (idToDelete) => {
+    setApt((prevApt) => prevApt.filter((apt) => apt.id !== idToDelete));
   };
 
   return (
@@ -21,7 +20,8 @@ function App() {
           <Navbar />
         </nav>
       </div>
-      <div id="segundoContainer">
+
+      <div id="main-container">
         <div className="sidebar">
           <Sidebar />
         </div>
