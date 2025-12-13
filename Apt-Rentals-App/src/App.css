@@ -1,7 +1,7 @@
 #card {
   display: flex;
   border: 2px solid rgb(0, 0, 0);
-  padding: 50px;
+  padding: 5vh;
 }
 
 .img {
@@ -31,12 +31,11 @@
 
 #main-container {
   display: flex;
-  flex-direction: row;
 }
 
 .sidebar {
   border: 2px solid rgb(0, 0, 0);
-  width: 400px;
+  width: 40vh;
 }
 
 #container-sidebar {
@@ -45,15 +44,23 @@
   gap: 50px;
 }
 
-#container-sidebar button {
+.sidebar-link {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 20px;
   background: transparent;
   padding: 2vh;
-  border-radius: 50px;
   margin-top: 2vh;
   font-size: 2.6vh;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 50px;
+}
+
+.sidebar-link button {
+  background: none;
+  border: none;
   cursor: pointer;
 }

@@ -1,10 +1,14 @@
-import "./App.css";
-import Navbar from "./components/Navbar.jsx";
-import Sidebar from "./components/Sidebar.jsx";
-import Homepage from "./components/Homepage.jsx";
-import Footer from "./components/Footer.jsx";
-import AptData from "../src/assets/listings.json";
+import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
+
+import "./App.css";
+
+import Dashboard from "./pages/Dashboard.jsx";
+import AptData from "../src/assets/listings.json";
+import Apartments from "../src/pages/Apartments.jsx";
+import Layout from "./components/Layout";
+import Users from "./pages/Users.jsx";
+import ApartmentList from "./components/ApartmentsList.jsx";
 
 function App() {
   const [apt, setApt] = useState(AptData.results);
@@ -14,27 +18,24 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div id="primerContainer">
-        <nav className="navbar">
-          <Navbar />
-        </nav>
-      </div>
-
-      <div id="main-container">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
-        <div className="homepage">
-          <Homepage apt={apt} handleDeleteApt={handleDeleteApt} />
-        </div>
-      </div>
-      <div id="tercerContainer">
-        <footer className="footer">
-          <Footer />
-        </footer>
-      </div>
-    </div>
+    <>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route
+            path="/"
+            element={<Dashboard apt={apt} handleDeleteApt={handleDeleteApt} />}
+          />
+          <Route
+            path="/apartments"
+            element={<Apartments apt={apt} handleDeleteApt={handleDeleteApt} />}
+          />
+          <Route
+            path="/users"
+            element={<Users apt={apt} handleDeleteApt={handleDeleteApt} />}
+          />
+        </Route>
+      </Routes>
+    </>
   );
 }
 

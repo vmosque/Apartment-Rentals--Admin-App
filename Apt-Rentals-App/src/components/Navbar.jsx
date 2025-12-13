@@ -1,5 +1,3 @@
-import React from "react";
-
 import rentadoImg from "../assets/rentado.png";
 import logoImg from "../assets/logo.png";
 import profileLogo from "../assets/profile-icon.png";

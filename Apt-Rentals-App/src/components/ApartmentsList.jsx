@@ -1,7 +1,9 @@
-const Homepage = ({ apt, handleDeleteApt }) => {
+import React from "react";
+
+const ApartmentsList = ({ apt, handleDeleteApt }) => {
   return (
     <>
-      {apt.slice(0, 5).map((aptCharac) => (
+      {apt.map((aptCharac) => (
         <div key={aptCharac.id} id="card">
           <img className="img" src={aptCharac.picture_url} alt="" />
           <h1 className="name">{aptCharac.name}</h1>
@@ -15,4 +17,4 @@ const Homepage = ({ apt, handleDeleteApt }) => {
   );
 };
 
-export default Homepage;
+export default ApartmentsList;
