@@ -11,54 +11,44 @@ const Sidebar = () => {
     <>
       <div id="container-sidebar">
         <Link to="/" className="sidebar-link">
-          <button>
-            <img
-              className="sidebar-icon"
-              src={dashboardIcon}
-              alt="dashboard icon"
-            />
-            Dashboard
-          </button>
+          <img
+            className="sidebar-icon"
+            src={dashboardIcon}
+            alt="dashboard icon"
+          />
+          Dashboard
         </Link>
 
         <Link to="/apartments" className="sidebar-link">
-          <button>
-            <img
-              className="sidebar-icon"
-              src={apartmentsIcon}
-              alt="apartments icon"
-            />
-            Apartments
-          </button>
+          <img
+            className="sidebar-icon"
+            src={apartmentsIcon}
+            alt="apartments icon"
+          />
+          Apartments
         </Link>
 
         <Link to="/users" className="sidebar-link">
-          <button>
-            <img className="sidebar-icon" src={usersIcon} alt="users icon" />
-            Users
-          </button>
+          <img className="sidebar-icon" src={usersIcon} alt="users icon" />
+          Users
         </Link>
 
         <Link to="/reservations" className="sidebar-link">
-          <button>
-            <img
-              className="sidebar-icon"
-              src={reservationsIcon}
-              alt="reservations icon"
-            />
-            Reservations
-          </button>
+          <img
+            className="sidebar-icon"
+            src={reservationsIcon}
+            alt="reservations icon"
+          />
+          Reservations
         </Link>
 
         <Link to="/settings" className="sidebar-link">
-          <button>
-            <img
-              className="sidebar-icon"
-              src={settingsIcon}
-              alt="settings icon"
-            />
-            Settings
-          </button>
+          <img
+            className="sidebar-icon"
+            src={settingsIcon}
+            alt="settings icon"
+          />
+          Settings
         </Link>
       </div>
     </>
