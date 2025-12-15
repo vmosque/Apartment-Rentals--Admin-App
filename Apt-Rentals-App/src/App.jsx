@@ -8,7 +8,6 @@ import AptData from "../src/assets/listings.json";
 import Apartments from "../src/pages/Apartments.jsx";
 import Layout from "./components/Layout";
 import Users from "./pages/Users.jsx";
-import ApartmentList from "./components/ApartmentsList.jsx";
 
 function App() {
   const [apt, setApt] = useState(AptData.results);

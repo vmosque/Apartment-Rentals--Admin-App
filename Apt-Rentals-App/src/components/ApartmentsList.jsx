@@ -1,27 +1,32 @@
-const ApartmentsList = ({ apt, handleDeleteApt }) => {
+const ApartmentsList = ({ apt, handleDeleteApt, isPreview }) => {
   return (
     <>
-      <div className="list-header">
+      <div className={`list-header ${isPreview ? "no-actions" : ""} `}>
         <span>Image</span>
         <span>Name</span>
         <span>Location</span>
         <span>Price</span>
-        <span>Actions</span>
+        {!isPreview && <span>Actions</span>}
       </div>
 
       {apt.map((aptCharac) => (
-        <div key={aptCharac.id} id="card">
+        <div
+          key={aptCharac.id}
+          className={`card ${isPreview ? "no-actions" : ""}`}
+        >
           <img className="img" src={aptCharac.picture_url} alt="" />
-          <h1 className="name">{aptCharac.name}</h1>
-          <h1 className="location">{aptCharac.host_location}</h1>
-          <h1 className="price">{aptCharac.price}</h1>
+          <p className="name">{aptCharac.name}</p>
+          <p className="location">{aptCharac.host_location}</p>
+          <p className="price">{aptCharac.price}</p>
 
-          <div className="actions">
-            <button>EDIT</button>
-            <button onClick={() => handleDeleteApt(aptCharac.id)}>
-              DELETE
-            </button>
-          </div>
+          {!isPreview && (
+            <div className="actions">
+              <button>EDIT</button>
+              <button onClick={() => handleDeleteApt(aptCharac.id)}>
+                DELETE
+              </button>
+            </div>
+          )}
         </div>
       ))}
     </>
