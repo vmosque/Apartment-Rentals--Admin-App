@@ -16,22 +16,26 @@ function App() {
     setApt((prevApt) => prevApt.filter((apt) => apt.id !== idToDelete));
   };
 
+  const handleAddApt = (newApt) => {
+    setApt((prev) => [newApt, ...prev]);
+  };
+
   return (
     <>
       <Routes>
         <Route element={<Layout />}>
-          <Route
-            path="/"
-            element={<Dashboard apt={apt} handleDeleteApt={handleDeleteApt} />}
-          />
+          <Route path="/" element={<Dashboard apt={apt} />} />
           <Route
             path="/apartments"
-            element={<Apartments apt={apt} handleDeleteApt={handleDeleteApt} />}
+            element={
+              <Apartments
+                apt={apt}
+                handleDeleteApt={handleDeleteApt}
+                handleAddApt={handleAddApt}
+              />
+            }
           />
-          <Route
-            path="/users"
-            element={<Users apt={apt} handleDeleteApt={handleDeleteApt} />}
-          />
+          <Route path="/users" element={<Users />} />
         </Route>
       </Routes>
     </>

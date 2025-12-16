@@ -5,6 +5,7 @@ const Dashboard = ({ apt, handleDeleteApt }) => {
     (aptCharac) => aptCharac.has_availability
   ).length;
 
+  const latestApts = [...apt].sort((a, b) => b.id - a.id).slice(0, 5);
   return (
     <div className="dashboard">
       <div id="dashboard-container">
@@ -30,11 +31,7 @@ const Dashboard = ({ apt, handleDeleteApt }) => {
       </div>
 
       <div className="dashboard-list">
-        <ApartmentsList
-          apt={apt.slice(0, 5)}
-          handleDeleteApt={handleDeleteApt}
-          isPreview={true}
-        />
+        <ApartmentsList apt={latestApts} isPreview={true} />
       </div>
     </div>
   );

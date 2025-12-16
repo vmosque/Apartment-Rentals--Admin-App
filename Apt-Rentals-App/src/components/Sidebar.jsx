@@ -4,52 +4,77 @@ import apartmentsIcon from "../assets/apartments-icon.svg";
 import usersIcon from "../assets/users-icon.svg";
 import reservationsIcon from "../assets/reservations-icon.svg";
 import settingsIcon from "../assets/settings-icon.svg";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <>
       <div id="container-sidebar">
-        <Link to="/" className="sidebar-link">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+        >
           <img
             className="sidebar-icon"
             src={dashboardIcon}
             alt="dashboard icon"
           />
           Dashboard
-        </Link>
+        </NavLink>
 
-        <Link to="/apartments" className="sidebar-link">
+        <NavLink
+          to="/apartments"
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+        >
           <img
             className="sidebar-icon"
             src={apartmentsIcon}
             alt="apartments icon"
           />
           Apartments
-        </Link>
+        </NavLink>
 
-        <Link to="/users" className="sidebar-link">
+        <NavLink
+          to="/users"
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+        >
           <img className="sidebar-icon" src={usersIcon} alt="users icon" />
           Users
-        </Link>
+        </NavLink>
 
-        <Link to="/reservations" className="sidebar-link">
+        <NavLink
+          to="/reservations"
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+        >
           <img
             className="sidebar-icon"
             src={reservationsIcon}
             alt="reservations icon"
           />
           Reservations
-        </Link>
+        </NavLink>
 
-        <Link to="/settings" className="sidebar-link">
+        <NavLink
+          to="/settings"
+          className={({ isActive }) =>
+            isActive ? "sidebar-link active" : "sidebar-link"
+          }
+        >
           <img
             className="sidebar-icon"
             src={settingsIcon}
             alt="settings icon"
           />
           Settings
-        </Link>
+        </NavLink>
       </div>
     </>
   );

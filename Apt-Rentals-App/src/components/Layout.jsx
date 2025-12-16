@@ -6,27 +6,17 @@ import Footer from "./Footer";
 const Layout = () => {
   return (
     <div className="App">
-      <div id="primerContainer">
-        <nav className="navbar">
-          <Navbar />
-        </nav>
-      </div>
+      <Navbar />
 
       <div id="main-container">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
+        <Sidebar />
 
         <div className="homepage">
           <Outlet />
         </div>
       </div>
 
-      <div id="tercerContainer">
-        <footer className="footer">
-          <Footer />
-        </footer>
-      </div>
+      <Footer />
     </div>
   );
 };

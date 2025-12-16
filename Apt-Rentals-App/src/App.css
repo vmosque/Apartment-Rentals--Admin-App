@@ -31,7 +31,8 @@ body {
   align-items: center;
   gap: 20px;
   padding: 20px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid var(--border);
+  background-color: var(--primary-soft);
   font-size: 2.4vh;
   min-height: 160px;
 }
@@ -44,18 +45,20 @@ body {
 }
 
 #navbar {
+  height: 120px;
+  padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 2px solid rgb(0, 0, 0);
-  height: 10vh;
-  background-color: var(--bg-card);
+
+  background-color: var(--primary-soft);
   border-bottom: 1px solid var(--border);
-  padding: 0 30px;
 }
 
 .navbar-logo {
-  width: 12vh;
+  height: 100px;
+  width: auto;
+  display: block;
 }
 
 .navbar-rentado {
@@ -63,42 +66,54 @@ body {
 }
 
 .navbar-profileLogo {
-  width: 8vh;
+  width: 4vh;
   margin-right: 8px;
 }
 
 #main-container {
   display: flex;
   width: 100%;
+  min-height: 0;
 }
 
 .sidebar {
   width: 260px;
-  background-color: var(--bg-card);
+  background-color: #f3f4f6;
   border-right: 1px solid var(--border);
+  flex-shrink: 0;
 }
 
 #container-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 30px 20px;
+  padding: 24px 16px;
 }
 
 .sidebar-link {
+  padding: 14px 18px;
+  line-height: 1.2;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2vh;
-  background: none;
-  padding: 1.4vh;
-  margin-top: 2vh;
-  font-size: 2vh;
-  cursor: pointer;
-  text-decoration: none;
-  border: 2px solid rgb(0, 0, 0);
-  border-radius: 50px;
-  color: black;
+  gap: 12px;
+
+  padding: 12px;
+  font-size: 14px;
+
+  border-radius: 999px;
+  border: 1px solid var(--border);
+
+  color: var(--text-main);
+  background-color: transparent;
+}
+
+.sidebar-link:hover {
+  background-color: var(--primary-soft);
+  border-color: var(--primary);
+}
+
+.sidebar-link.active {
+  background-color: white;
+  color: var(--primary);
+  font-weight: 600;
 }
 
 .name,
@@ -116,7 +131,11 @@ body {
 .homepage {
   flex: 1;
   width: 100%;
-  overflow-x: auto;
+  min-width: 0;
+
+  background-color: var(--primary-soft);
+  padding: 32px;
+  overflow-x: hidden;
 }
 
 .actions {
@@ -204,12 +223,7 @@ body {
 
 #card {
   display: grid;
-  grid-template-columns: 120px 2fr 2fr 120px 1fr;
-  align-items: center;
-  gap: 20px;
-  padding: 18px 20px;
-  border-top: 1px solid var(--border);
-  font-size: 14px;
+  grid-template-columns: 120px minmax(0, 2fr) minmax(0, 2fr) 120px 1fr;
 }
 
 #card:hover {
