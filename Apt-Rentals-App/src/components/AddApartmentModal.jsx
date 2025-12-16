@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const AddApartmentModal = ({ onAdd, onClose }) => {
   const [name, setName] = useState("");
@@ -20,41 +20,67 @@ const AddApartmentModal = ({ onAdd, onClose }) => {
     onClose();
   };
 
+  // Evita scroll del body cuando el modal está abierto
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => (document.body.style.overflow = "auto");
+  }, []);
+
   return (
-    <div className="modal-backdrop">
-      <div className="modal">
-        <h2>New Apartment</h2>
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+        <div className="modal-header">
+          <h2>Add apartment</h2>
+          <button className="close-btn" onClick={onClose}>
+            ×
+          </button>
+        </div>
 
         <form onSubmit={handleSubmit}>
-          <input
-            placeholder="Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-          <input
-            placeholder="Location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-            required
-          />
-          <input
-            type="number"
-            placeholder="Price"
-            value={price}
-            onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-          <input
-            placeholder="Image URL"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-          />
+          <div className="modal-body">
+            <label>
+              Apartment name
+              <input
+                autoFocus
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </label>
 
-          <button type="submit">Save</button>
-          <button type="button" onClick={onClose}>
-            Cancel
-          </button>
+            <label>
+              Location
+              <input
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                required
+              />
+            </label>
+
+            <label>
+              Price ($)
+              <input
+                type="number"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                required
+              />
+            </label>
+
+            <label>
+              Image URL
+              <input value={image} onChange={(e) => setImage(e.target.value)} />
+            </label>
+          </div>
+
+          <div className="modal-footer">
+            <button type="button" className="btn-secondary" onClick={onClose}>
+              Cancel
+            </button>
+            <button type="submit" className="btn-primary">
+              Save
+            </button>
+          </div>
         </form>
       </div>
     </div>

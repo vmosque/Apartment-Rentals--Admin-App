@@ -5,9 +5,14 @@ import AddApartmentModal from "../components/AddApartmentModal";
 const Apartments = ({ apt, handleDeleteApt, handleAddApt }) => {
   const [isOpen, setIsOpen] = useState(false);
   const lastFiveApts = [...apt].sort((a, b) => b.id - a.id).slice(0, 5);
+
   return (
-    <>
-      <button onClick={() => setIsOpen(true)}>+ Add Apartment</button>
+    <div className="apartments-page">
+      <div className="apartments-header">
+        <button className="add-apartment-btn" onClick={() => setIsOpen(true)}>
+          + Add Apartment
+        </button>
+      </div>
 
       {isOpen && (
         <AddApartmentModal
@@ -15,8 +20,9 @@ const Apartments = ({ apt, handleDeleteApt, handleAddApt }) => {
           onClose={() => setIsOpen(false)}
         />
       )}
+
       <ApartmentsList apt={lastFiveApts} handleDeleteApt={handleDeleteApt} />
-    </>
+    </div>
   );
 };
 
