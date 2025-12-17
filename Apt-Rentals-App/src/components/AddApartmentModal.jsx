@@ -1,21 +1,33 @@
 import { useState, useEffect } from "react";
 
-const AddApartmentModal = ({ onAdd, onClose }) => {
-  const [name, setName] = useState("");
-  const [location, setLocation] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
+const AddApartmentModal = ({
+  mode = "add",
+  initialData,
+  onAdd,
+  onEdit,
+  onClose,
+}) => {
+  const [name, setName] = useState(initialData?.name || "");
+  const [location, setLocation] = useState(initialData?.host_location || "");
+  const [price, setPrice] = useState(initialData?.price || "");
+  const [image, setImage] = useState(initialData?.picture_url || "");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    onAdd({
-      id: Date.now(),
+    const apartmentData = {
+      id: initialData?.id || Date.now(),
       name,
       host_location: location,
       price,
       picture_url: image || "https://via.placeholder.com/150",
-    });
+    };
+
+    if (mode === "edit") {
+      onEdit(apartmentData);
+    } else {
+      onAdd(apartmentData);
+    }
 
     onClose();
   };
@@ -30,7 +42,7 @@ const AddApartmentModal = ({ onAdd, onClose }) => {
     <div className="modal-backdrop" onClick={onClose}>
       <div className="modal-card" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
-          <h2>Add apartment</h2>
+          <h2>{mode === "edit" ? "Edit apartment" : "Add apartment"}</h2>
           <button className="close-btn" onClick={onClose}>
             ×
           </button>

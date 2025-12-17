@@ -8,6 +8,7 @@ import AptData from "../src/assets/listings.json";
 import Apartments from "../src/pages/Apartments.jsx";
 import Layout from "./components/Layout";
 import Users from "./pages/Users.jsx";
+import SignIn from "./pages/SignIn.jsx";
 
 function App() {
   const [apt, setApt] = useState(AptData.results);
@@ -18,6 +19,12 @@ function App() {
 
   const handleAddApt = (newApt) => {
     setApt((prev) => [newApt, ...prev]);
+  };
+
+  const handleEditApt = (updatedApt) => {
+    setApt((prev) =>
+      prev.map((apt) => (apt.id === updatedApt.id ? updatedApt : apt))
+    );
   };
 
   return (
@@ -32,10 +39,12 @@ function App() {
                 apt={apt}
                 handleDeleteApt={handleDeleteApt}
                 handleAddApt={handleAddApt}
+                handleEditApt={handleEditApt}
               />
             }
           />
           <Route path="/users" element={<Users />} />
+          <Route path="/signin" element={<SignIn />} />
         </Route>
       </Routes>
     </>

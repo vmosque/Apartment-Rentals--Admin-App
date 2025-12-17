@@ -1,4 +1,4 @@
-const ApartmentsList = ({ apt, handleDeleteApt, isPreview }) => {
+const ApartmentsList = ({ apt, handleDeleteApt, isPreview, onEdit }) => {
   return (
     <>
       <div className={`list-header ${isPreview ? "no-actions" : ""} `}>
@@ -21,7 +21,7 @@ const ApartmentsList = ({ apt, handleDeleteApt, isPreview }) => {
 
           {!isPreview && (
             <div className="actions">
-              <button>EDIT</button>
+              <button onClick={() => onEdit(aptCharac)}>EDIT</button>
               <button onClick={() => handleDeleteApt(aptCharac.id)}>
                 DELETE
               </button>

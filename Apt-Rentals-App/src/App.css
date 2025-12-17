@@ -1,13 +1,18 @@
 :root {
-  --primary: #1fb6b2;
-  --primary-dark: #159a97;
-  --primary-soft: #e6f7f6;
+  --primary: #14b8a6;
+  --primary-dark: #0f766e;
+  --primary-soft: #f0fdfa;
 
-  --text-main: #1f2933;
-  --text-muted: #6b7280;
+  --sidebar-bg: #0f172a;
+  --sidebar-bg-soft: #020617;
+  --sidebar-text: #cbd5e1;
+  --sidebar-active: #14b8a6;
+
+  --text-main: #0f172a;
+  --text-muted: #64748b;
 
   --border: #e5e7eb;
-  --bg-main: #f9fafb;
+  --bg-main: #f8fafc;
   --bg-card: #ffffff;
 }
 
@@ -21,11 +26,11 @@ body {
     sans-serif;
   background-color: var(--bg-main);
   color: var(--text-main);
+  overflow-x: hidden;
 }
 
 .card,
 .list-header {
-  grid-template-columns: 120px 2fr 2fr 120px 1fr;
   display: grid;
   grid-template-columns: 120px 2fr 2fr 120px 1fr;
   align-items: center;
@@ -72,48 +77,67 @@ body {
 
 #main-container {
   display: flex;
-  width: 100%;
-  min-height: 0;
+  min-height: calc(100vh - 120px);
+  overflow-x: hidden;
+}
+
+.page-with-footer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar {
   width: 260px;
-  background-color: #f3f4f6;
-  border-right: 1px solid var(--border);
+  background-color: var(--sidebar-bg);
+  border-right: 1px solid #020617;
   flex-shrink: 0;
+  min-height: 100vh;
 }
 
 #container-sidebar {
   padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background-color: #2f394e;
 }
 
 .sidebar-link {
-  padding: 14px 18px;
-  line-height: 1.2;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 12px;
 
-  padding: 12px;
+  padding: 12px 14px;
   font-size: 14px;
+  border-radius: 10px;
 
-  border-radius: 999px;
-  border: 1px solid var(--border);
+  color: var(--sidebar-text);
+  text-decoration: none;
+  border: none;
+  background: transparent;
 
-  color: var(--text-main);
-  background-color: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-link img {
+  width: 18px;
+  height: 18px;
+  opacity: 0.85;
+  background-color: #2dbdca;
 }
 
 .sidebar-link:hover {
-  background-color: var(--primary-soft);
-  border-color: var(--primary);
+  background-color: rgba(255, 255, 255, 0.06);
 }
 
 .sidebar-link.active {
-  background-color: white;
-  color: var(--primary);
-  font-weight: 600;
+  background-color: rgba(20, 184, 166, 0.15);
+  color: white;
+}
+
+.sidebar-link.active img {
+  opacity: 1;
 }
 
 .name,
@@ -130,16 +154,11 @@ body {
 
 .homepage {
   flex: 1;
-  width: 100%;
   min-width: 0;
-
   background-color: var(--primary-soft);
   padding: 32px;
-  overflow-x: hidden;
-
   display: flex;
   flex-direction: column;
-  align-items: stretch;
 }
 
 .actions {
@@ -168,12 +187,6 @@ body {
 
 .actions button:hover {
   opacity: 0.85;
-}
-
-#dashboard-container {
-  display: flex;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
 }
 
 .list-header {
@@ -372,8 +385,108 @@ body {
 }
 
 .apartments-header {
-  width: 100%;
   display: flex;
   justify-content: flex-end;
   margin-bottom: 20px;
+}
+
+.signin-page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.signin-card {
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  padding: 32px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+
+  animation: signInFadeIn 0.25s ease-out;
+}
+.signin-title {
+  margin: 0 0 24px;
+  font-size: 25px;
+  font-weight: 500;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.signin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.signin-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.signin-form input {
+  margin-top: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.signin-form button {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--primary);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.signin-form button:hover {
+  background-color: var(--primary-dark);
+}
+
+.signin-error {
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: #dc2626;
+  text-align: center;
+}
+
+@keyframes signinFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer {
+  padding: 16px 32px;
+  border-top: 1px solid var(--border);
+  background-color: var(--primary-soft);
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
